@@ -17,7 +17,7 @@ namespace PostmanCloneUI
     /// </summary>
     public partial class Dashboard : Window
     {
-        private readonly ApiAccess api = new ApiAccess();
+        private readonly IApiAccess api = new ApiAccess();
 
         public Dashboard()
         {
@@ -26,8 +26,11 @@ namespace PostmanCloneUI
 
         private async void callApi_Click(object sender, RoutedEventArgs e)
         {
+            statusTextBlock.Text = "Calling API...";
+            resultsText.Text = "";
+
             // Validate the API URL
-            if(api.IsValidUrl(apiText.Text) == false)
+            if (api.IsValidUrl(apiText.Text) == false)
             {
                 statusTextBlock.Text = "Invalid URL";
                 return;
@@ -35,8 +38,6 @@ namespace PostmanCloneUI
 
             try
             {
-                statusTextBlock.Text = "Calling API...";
-
                 resultsText.Text = await api.CallApiAsync(apiText.Text);
 
                 statusTextBlock.Text = "Ready";

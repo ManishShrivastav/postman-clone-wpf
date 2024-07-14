@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PostmanCloneUI"
         mc:Ignorable="d"
         Title="Postman Clone by Manish Shrivastav" Height="570" Width="800">
-    <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>

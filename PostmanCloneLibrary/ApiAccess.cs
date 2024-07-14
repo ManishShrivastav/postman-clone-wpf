@@ -8,14 +8,14 @@ using static PostmanCloneLibrary.Enums;
 
 namespace PostmanCloneLibrary
 {
-    public class ApiAccess
+    public class ApiAccess : IApiAccess
     {
 
         private readonly HttpClient client = new HttpClient();
 
         public async Task<string> CallApiAsync(
-            string url, 
-            bool formatOutput = true, 
+            string url,
+            bool formatOutput = true,
             HttpAction action = HttpAction.GET
         )
         {
