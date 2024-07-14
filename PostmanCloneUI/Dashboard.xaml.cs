@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using PostmanCloneLibrary;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,9 +15,11 @@ namespace PostmanCloneUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Dashboard : Window
     {
-        public MainWindow()
+        private readonly ApiAccess api = new ApiAccess();
+
+        public Dashboard()
         {
             InitializeComponent();
         }
@@ -24,13 +27,17 @@ namespace PostmanCloneUI
         private async void callApi_Click(object sender, RoutedEventArgs e)
         {
             // Validate the API URL
+            if(api.IsValidUrl(apiText.Text) == false)
+            {
+                statusTextBlock.Text = "Invalid URL";
+                return;
+            }
 
             try
             {
                 statusTextBlock.Text = "Calling API...";
 
-                // Sample code - replace with the actual API call
-                await Task.Delay(2000);
+                resultsText.Text = await api.CallApiAsync(apiText.Text);
 
                 statusTextBlock.Text = "Ready";
             }
