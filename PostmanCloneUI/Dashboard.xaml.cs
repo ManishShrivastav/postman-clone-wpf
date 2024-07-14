@@ -49,6 +49,15 @@ namespace PostmanCloneUI
                 case "POST":
                     action = HttpAction.POST;
                     break;
+                case "PUT":
+                    action = HttpAction.PUT;
+                    break;
+                case "PATCH":
+                    action = HttpAction.PATCH;
+                    break;
+                case "DELETE":
+                    action = HttpAction.DELETE;
+                    break;
                 default:
                     statusTextBlock.Text = "Invalid HTTP Verb";
                     return;
