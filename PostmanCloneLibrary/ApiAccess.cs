@@ -15,15 +15,38 @@ namespace PostmanCloneLibrary
 
         public async Task<string> CallApiAsync(
             string url,
-            bool formatOutput = true,
-            HttpAction action = HttpAction.GET
+            string content,
+            HttpAction action = HttpAction.GET,
+            bool formatOutput = true)
+        {
+            StringContent stringContent = new StringContent(content, Encoding.UTF8, "application/json");
+            return await CallApiAsync(url, stringContent, action, formatOutput);
+        }
+
+        public async Task<string> CallApiAsync(
+            string url,
+            HttpContent? content = null,
+            HttpAction action = HttpAction.GET,
+            bool formatOutput = true
         )
         {
-            var resonse = await client.GetAsync(url);
+            HttpResponseMessage? response;
 
-            if (resonse.IsSuccessStatusCode)
+            switch (action)
             {
-                string json = await resonse.Content.ReadAsStringAsync();
+                case HttpAction.GET:
+                    response = await client.GetAsync(url);
+                    break;
+                case HttpAction.POST:
+                    response = await client.PostAsync(url, content);
+                    break;
+                default:
+                    throw new ArgumentException($"Unsupported HTTP action: {action}", nameof(action));
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
 
                 if (formatOutput)
                 {
@@ -36,7 +59,7 @@ namespace PostmanCloneLibrary
             }
             else
             {
-                return $"Error: {resonse.StatusCode}";
+                return $"Error: {response.StatusCode}";
             }
         }
 

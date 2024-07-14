@@ -14,7 +14,7 @@ namespace PostmanCloneLibrary
             POST,
             PUT,
             PATCH,
-            DELETE
+            DELETE,
         }
     }
 }

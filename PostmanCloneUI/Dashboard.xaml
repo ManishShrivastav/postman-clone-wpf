@@ -43,7 +43,7 @@
             <TabItem x:Name="bodyTab" Header="Body">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <Grid>
-                        <TextBox x:Name="bodyText" Text="Body content goes here..."
+                        <TextBox x:Name="bodyText" Text=""
                                  VerticalAlignment="Stretch"
                                  HorizontalAlignment="Stretch"
                                  AcceptsReturn="True"

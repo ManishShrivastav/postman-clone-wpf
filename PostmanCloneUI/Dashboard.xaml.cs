@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static PostmanCloneLibrary.Enums;
 
 namespace PostmanCloneUI
 {
@@ -22,6 +23,7 @@ namespace PostmanCloneUI
         public Dashboard()
         {
             InitializeComponent();
+            httpVerbSelection.SelectedIndex = 0;
         }
 
         private async void callApi_Click(object sender, RoutedEventArgs e)
@@ -36,9 +38,27 @@ namespace PostmanCloneUI
                 return;
             }
 
+            HttpAction action;
+            string selectedVerb = (httpVerbSelection.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            switch (selectedVerb)
+            {
+                case "GET":
+                    action = HttpAction.GET;
+                    break;
+                case "POST":
+                    action = HttpAction.POST;
+                    break;
+                default:
+                    statusTextBlock.Text = "Invalid HTTP Verb";
+                    return;
+            }
+
             try
             {
-                resultsText.Text = await api.CallApiAsync(apiText.Text);
+                resultsText.Text = await api.CallApiAsync(apiText.Text, bodyText.Text , action);
+                callData.SelectedIndex = 1;
+
 
                 statusTextBlock.Text = "Ready";
             }
