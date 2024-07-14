@@ -5,11 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PostmanCloneUI"
         mc:Ignorable="d"
-        Title="Postman Clone by Manish Shrivastav" Height="450" Width="800">
+        Title="Postman Clone by Manish Shrivastav" Height="570" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="wpfHeader" Content="Postman Clone" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label x:Name="apiLabel" Content="API:" Grid.Column="0" Grid.Row="1" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox x:Name="httpVerbSelection" Grid.Column="1" Grid.Row="1" Width="100" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBoxItem x:Name="get" FontSize="18">GET</ComboBoxItem>
+            <ComboBoxItem x:Name="post" FontSize="18">POST</ComboBoxItem>
+            <ComboBoxItem x:Name="put" FontSize="18">PUT</ComboBoxItem>
+            <ComboBoxItem x:Name="patch" FontSize="18">PATCH</ComboBoxItem>
+            <ComboBoxItem x:Name="delete" FontSize="18">DELETE</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="apiText" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Margin="5"/>
+        <Button x:Name="callApi" Content="Go" Grid.Column="8" Grid.Row="1" Width="50" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" Click="callApi_Click"/>
+        <TabControl x:Name="callData" Grid.Column="0" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="9" Margin="10">
+            <TabItem x:Name="bodyTab" Header="Body">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid>
+                        <TextBox x:Name="bodyText" Text="Body content goes here..."
+                                 VerticalAlignment="Stretch"
+                                 HorizontalAlignment="Stretch"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 HorizontalScrollBarVisibility="Auto"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="resultsTab" Header="Results">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid>
+                        <TextBox x:Name="resultsText"
+                                 IsReadOnly="True" 
+                                 VerticalAlignment="Stretch"
+                                 HorizontalAlignment="Stretch"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 HorizontalScrollBarVisibility="Auto"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <StatusBar x:Name="systemStatus" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="9">
+            <StatusBarItem FontSize="18">
+                <TextBlock x:Name="statusTextBlock" Text="Ready"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

@@ -20,5 +20,25 @@ namespace PostmanCloneUI
         {
             InitializeComponent();
         }
+
+        private async void callApi_Click(object sender, RoutedEventArgs e)
+        {
+            // Validate the API URL
+
+            try
+            {
+                statusTextBlock.Text = "Calling API...";
+
+                // Sample code - replace with the actual API call
+                await Task.Delay(2000);
+
+                statusTextBlock.Text = "Ready";
+            }
+            catch (Exception ex)
+            {
+                resultsText.Text = "Error: " + ex.Message;
+                statusTextBlock.Text = "Error";
+            }
+        }
     }
 }
